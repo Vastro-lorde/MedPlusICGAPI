@@ -40,11 +40,11 @@ namespace MedPlusICGAPI.Repo
                             invoice.ClientCode = reader.GetInt32("CODCLIENTE");
                             invoice.CurrencyCode = reader.GetInt32("CODMONEDA");
                             invoice.SupplierCode = reader.GetInt32("CODPROVEEDOR");
-                            invoice.InvoiceDate = reader.GetDateTime("FECHAALBARAN");
-                            invoice.CreationDate = reader.GetDateTime("FECHACREACION");
-                            invoice.EntryDate = reader.GetDateTime("FECHAENTRADA");
-                            invoice.ModifiedDate = reader.GetDateTime("FECHAMODIFICADO");
-                            invoice.Hour = reader.GetDateTime("HORA");
+                            invoice.InvoiceDate = GetDateOrDefault(reader, "FECHAALBARAN");
+                            invoice.CreationDate = GetDateOrDefault(reader, "FECHACREACION");
+                            invoice.EntryDate = GetDateOrDefault(reader, "FECHAENTRADA");
+                            invoice.ModifiedDate = GetDateOrDefault(reader, "FECHAMODIFICADO");
+                            invoice.Hour = GetDateOrDefault(reader, "HORA");
                             invoice.InvoiceNumber = reader.GetInt32("NUMALBARAN");
                             invoice.SerialNumber = reader.GetString("NUMSERIE");
                             invoice.YourInvoice = reader.GetString("SUALBARAN");
@@ -117,7 +117,7 @@ namespace MedPlusICGAPI.Repo
                         vendor.Phone1 = GetStringOrNull(vendorReader, "TELEFONO1");
                         vendor.Phone2 = GetStringOrNull(vendorReader, "TELEFONO2");
                     }
-                    invoice.vendor = vendor;
+                    invoice.Vendor = vendor;
 
                 }
 
@@ -182,6 +182,11 @@ namespace MedPlusICGAPI.Repo
         {
             int ordinal = reader.GetOrdinal(columnName);
             return reader.IsDBNull(ordinal) ? (int?)null : reader.GetInt32(ordinal);
+        }
+        private static DateTime? GetDateOrDefault(SqlDataReader reader, string columnName)
+        {
+            int ordinal = reader.GetOrdinal(columnName);
+            return reader.IsDBNull(ordinal) ? (DateTime?)null : reader.GetDateTime(ordinal);
         }
     }
 

@@ -9,19 +9,19 @@ namespace MedPlusICGAPI.Model
         public int ClientCode { get; set; }
         public int? CurrencyCode { get; set; }
         public int SupplierCode { get; set; }
-        public DateTime InvoiceDate { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime EntryDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public DateTime Hour { get; set; }
+        public DateTime? InvoiceDate { get; set; }
+        public DateTime? CreationDate { get; set; }
+        public DateTime? EntryDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? Hour { get; set; }
         public int InvoiceNumber { get; set; }
         public string SerialNumber { get; set; }
         public string YourInvoice { get; set; }
-        public int DocumentType { get; set; }
+        public int? DocumentType { get; set; }
         public double GrossTotal { get; set; }
         public double NetTotal { get; set; }
         public List<InvoiceItem>? InvoiceItems { get; set; }
-        public Vendor? vendor { get; set; }
+        public Vendor? Vendor { get; set; }
     }
 
 
